@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Xavier">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/08/19/ais3-2025/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AIS3 2025 心得">
+<meta property="og:url" content="http://example.com/2025/08/19/AIS3-2025/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-08-19T03:15:39.000Z">
+<meta property="article:modified_time" content="2025-08-20T12:18:51.193Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="AIS3">
+<meta property="article:tag" content="Security">
+<meta property="article:tag" content="Life">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/profile.jpeg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpeg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/profile.jpeg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            AIS3 2025 心得 | Xavier
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file" rel="stylesheet">
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"20px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"english":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Xavier's Blog","subtitle":{"text":["Random post, CS x Daily x ... "],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/YenTing95015","instagram":null,"zhihu":null,"twitter":null,"email":"ianchen9299@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Profile":{"path":"/profile","icon":"fa-solid fa-user"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags/","icon":"fa-solid fa-tags"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Still building...","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/21 00:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Xavier
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/profile"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    PROFILE
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/profile"
+                        >
+                            <span>
+                                PROFILE
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="/images/AIS3-2025/IMG_1.jpg" alt="AIS3 2025 心得" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">AIS3 2025 心得</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/profile.jpeg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Xavier</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-19 11:15:39</span>
+        <span class="mobile">2025-08-19 11:15:39</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-08-20 20:18:51</span>
+            <span class="mobile">2025-08-20 20:18:51</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/AIS3/">AIS3</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Security/">Security</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Life/">Life</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>3k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>10 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>五月底扛著專題和期末硬著頭皮報名了Myfirst和Pre-exam，天天看日出勉強打進了正取線，參加了我的第一次AIS3<br>收到錄取通知後要選專題組別，這時我其實有點想放棄不去了，感覺我哪塊都不熟，去了只有被電爛的份，後來問了實驗室同學 @frostbean的經驗後，選了感覺相對友善的跨域組，看有沒有機會把我的工控專題拿去做延伸，然後稍微讀了一些課程相關的內容，等待著營期的到來</p>
+<h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>第0天就出大事，火車出發沒多久就因為短路卡在瀧溪，本來以為一下就會好，結果最後整整延誤了快三小時，趕緊聯絡了AIS3的助理雯芳姐，一開始還沒辦法聯繫上，還好到了高雄後電話打通，讓我能夠在抵達交大後住進宿舍</p>
+<p>到了交大後已經九點了，在宿舍和隊友們認親也小聊了一下，發現我是寢室最老的，還有兩位是高中生，當下除了覺得自己超菜沒其他想法了；交大宿舍也挺破都是灰塵，簡單清潔一下後洗個澡，帶著焦慮的心早早睡了</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>床好硬根本沒睡好，隊友們也是，來過交大數遍Agong帶我們去吃早餐，交大學餐這週吃下來真的很不錯，選擇和口味都完勝中央，也可能是我只待一週的關係吧</p>
+<p>十點開始第一堂課，沒想到第一天第一堂就來個硬的，馬聖豪老師直接講windows kernel，前面很努力的跟了半小時吧，但後來真的沒辦法了有聽沒有懂，但後來看了助教的心得文發現大家好像都差不多，讓人安心不少不是只有我聽不懂</p>
+<p>中午是校友分享，有現任助教和一些已經在業界工作的前輩分享他們的資安相關經歷，有位前輩的分享印象比較深刻，他當初也是零基礎來AIS3，甚至pre-exam只有100分，後來也慢慢學習到現在成為趨勢的工程師了，給了我不少的希望；red的分享也說要把每堂課都聽懂不太可能，心裡比較沒那麼慌了</p>
+<p>下午先是奧義的講師講一些目前AI在資安上的應用，之後devcore的NiNi介紹了他的駭客生涯和一些資安學習方面的建議，而且他好像是ADL的學長，兩場我都聽得滿開心的</p>
+<p>晚上吃完飯後是破冰，本來以為是小組間互相認識聊天的環節，結果助教們直接準備了ctf給大家打，但是紙本的就是了，我主動挑了crypto來解，但非常不順利，之後助教給了提示後還是沒能成功，後來決定去看其他人負責的題目，配合助教的提示解出一題gray code + caesar的crypto，總算是有做到事，最後我們這組總共解了3題，拿到一袋餅乾</p>
+<p>之後回到宿舍討論專題，和助教還有隊友提了一個工控傳輸加密的想法，助教是說ok，Austin和Bali也提了一些方向，總之題目還沒確定下來就是了，第一天意外準時的睡覺，不過已經看到其他組跑出去買硬體要開卷了，腦裡浮現了我真的能撐過這一個禮拜嗎的念頭</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>早上的課程都比較偏概念類的，是法務部的調查官和遠傳的資安長講課，負擔不大，大部分都有聽懂，上課期間也不時和隊友們討論專題，投了票決定要做工控了，等待晚上和助教報告進度</p>
+<p>下午開始是選修，我聽的是Husky的web，但一樣前半段有跟上，後面的lab就慢慢脫節了，之後是跨域組的量子密碼學選修，不多說聽不懂一點，前面是有講一些基礎的古典密碼學，但一進到量子我就不行了</p>
+<p>晚上是產業交流會，有很多資安廠商來擺攤徵才，但最爽的還是晚餐的炸雞披薩飲料吃到飽，有問了幾家公司的實習或研替資訊，感覺聽到我是升大四都滿歡迎我投履歷的，和大一去就業博覽會時一直被謝謝的情形完全不同</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/AIS3-2025/IMG_5070.jpg"
+                     
+                ></p>
+<center>超爽的炸雞披薩吃到飽</center>
+<br/>
+
+<p>回到宿舍後繼續討論專題，但不幸的是我提的modbus over TLS竟然github上已經有一個很完整的專案了，這個題目是走不下去了，但這時我們從Austin之前提的google tone有了新想法，就一直往聲音的方面討論看有沒有相關的資安問題，最後定下的方向就是用AI分析敲鍵盤的聲音差異來執行side channel attack偷取使用者的密碼，之後回到房間我用筆電的數字鍵錄了第一版的聲音，然後Austin超扛直接把模型train好了，還有一個不錯的準確度，進度大好，今天也就正式開始卷了，拖到了2點左右才睡，btw交大宿舍會熄燈，看來主辦方真的不想要我們一直熬夜</p>
+<h2 id="Day3"><a href="#Day3" class="headerlink" title="Day3"></a>Day3</h2><p>早上的課都是跨域組的選修，講的是醫療資訊安全，我沒太大興趣比較想去聽隔壁的web和reversing，所以就都在看專題相關的資料順便想怎麼把模型準確度拉上來，這時Austin超扯調了mfcc的參數讓準確度拉到了8成左右，同時Agong借到了一把鍵盤可以收更多資料，專題相當樂觀</p>
+<p>下午選擇去聽之前沒聽到的linux kernel，但沒上到上半堂還是跟得很吃力，最後lab還是沒做完；晚上是TRAPA的CEO Jeff演講，也是聽故事類型的講了他過去打比賽到最後開了公司的故事，然後有很多問答環節，聽得很開心</p>
+<p>晚上專題環節因為進度算超前，我就繼續看資料順便想一下報告的內容，12點就睡了，Austin卷到3點把模型拉到了9成準確度，佬到不行🛐</p>
+<h2 id="Day4"><a href="#Day4" class="headerlink" title="Day4"></a>Day4</h2><p>早上先上了奧義的惡意程式鑑識，之後是orange的php課，兩堂都很不錯學到滿多東西的，中午還要到了orange的簽名，專題的釣魚網頁也架起來了</p>
+<p>下午有跨域組的選修，聽不到orange的下半堂php，跨域這邊是酷澎的資安長講威脅建模，聽起來感覺偏抽象，但他有聊到目前資安相關的一些就業情形，也是不錯的一堂課</p>
+<p>晚餐排了一個AIS3社團幹部交流，其實也沒幹嘛我們這種不是幹部的領了免費晚餐就走了，然後大學班導為什麼會出現致詞他不是搞AI的嗎？我也沒打算認親，<del>他之前導聚只請便當我還記著呢</del></p>
+<p>晚上已經沒活動了，專題演進入debug階段，我們就回宿舍繼續肝，出現的問題是模型準確度很好但在網頁上跑起來準確度變很差，我和Agong嘗試把模型丟到後端不要用onxx跑，結果好像沒什麼差，之後我試了把聲音先做正規化後在丟給模型，結果也是差不多，後來想想會不會是過擬合，畢竟目前資料還是偏少，今天應該一路弄到了3點，最後實在撐不下去先睡了</p>
+<h2 id="Day5"><a href="#Day5" class="headerlink" title="Day5"></a>Day5</h2><p>今天一整天都是做專題的時間了，剩下要做的要做的就是多收一點資料和準備報告，早上就和Bali一起瘋狂敲鍵盤，下午自己練習要報告的部分，然後錄了簡單的demo影片，目前的成果要live demo感覺會翻車；晚上報告了一次給助教們聽，回去繼續依照建議修改簡報，今天一樣弄到了3點多</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/AIS3-2025/IMG_5076.jpg"
+                     
+                ></p>
+<center>下午主辦方準備的慰勞品</center>
+<br/>
+
+<p>地下室隨著發表時間接近也越來越瘋，有人直接貓娘樂園和拔座島開起來了，<del>當天就不該睡到地下室一起同樂到早上</del></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/AIS3-2025/IMG_5071.jpg"
+                     
+                ></p>
+<center>很有生活</center>
+
+<h2 id="Day6"><a href="#Day6" class="headerlink" title="Day6"></a>Day6</h2><p>報告的日子，早上先聽AI組的，有一組直接做了一個靠LLM自動解ctf的agent，感覺直接預訂最佳專題，剩下的很多和prompt injection有關；下午換我們跨域了，大家的方向都滿不同的，有工控、醫資、cve復現、apt分析之類的，報告完後其實有點小慌，首先評審說其實實務上ATM的鍵盤其實有特殊設計，很難透過聲學分析拿到有用的資訊，但他也說會問這麼尖銳是覺得我們的想法很有趣，依照經驗這種評語不是大好就是大壞，我自己是覺得大概和最佳專題擦肩而過了</p>
+<p>但都結束了就先好好放鬆吧，晚上寢室一起前往好市多，結果新竹的熱食部要卡才能進去，只能回學校吃麥當勞，之後洗完澡後不知道幹嘛鼓起勇氣出去社交了，在地下室和大家一起玩桌遊和聊天，認識了幾個新朋友，非常感謝當時的自己有勇敢踏出這步，和大家聊得很開心</p>
+<p>聊天過程中才發現大部分的助教年紀都比我小，又一次覺得自己菜到不行，但也有被激到了，兩週後的HITCON直接在天瓏買了作業系統和馬老師的書回家啃；另外今天仍有發瘋環節，一開始有買夠音樂會但我沒跟到，軟體組有人做到發瘋報告給貓咪聽，ctf組仍然一邊打A&amp;D和KoH一邊打gal game，超瘋超愛</p>
+<h2 id="Day7"><a href="#Day7" class="headerlink" title="Day7"></a>Day7</h2><p>最後一天真的就沒事了，單純聽軟體組和ctf組報告，軟體組真的好卷，今年總計26個0 day，然後有一組就挖了10個，還好當初沒填，ctf組就報告他們出的題目，因為今年沒有開放給大家打所以聽起來沒太大的感覺，有一題是滿有趣的做了一個和多鄰國有關的題目，結果給題目時好像連結放到真的多鄰國，讓一堆人跑去攻擊，<del>希望多鄰國不要提告</del>，最後有ctf助教的分享，才知道這次A&amp;D和KoH的infra都是他們自己架的，真的超強</p>
+<p>到了最後頒獎環節，講真的我不覺得我們能拿最佳專題，但沒想到一組有三個名額，最後還真的拿到了，感謝評審老師們的賞識與超扛的隊友們，有空也許可以把專題內容寫成一篇放上來</p>
+<h2 id="後記"><a href="#後記" class="headerlink" title="後記"></a>後記</h2><p>結束後就去日本爽了後面又接著HITCON，拖到現在才把心得文生出來，第一次參加AIS3就能幸運地夠拿下最佳專題，也算是給自己這一年的努力一個交代了；當然要特別謝謝隊友Austin, Bali, Agong, Tass，和助教Unicorn, Red, 三角蛇的幫忙，以及當初沒有臨陣脫逃的自己，這七天真的收穫滿滿，強烈推薦搞資安的有機會一定要來參加一次</p>
+<h2 id="其他趣事"><a href="#其他趣事" class="headerlink" title="其他趣事"></a>其他趣事</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/AIS3-2025/IMG_5065.jpg"
+                     
+                ></p>
+<center>第一天有人架了自己的eduroam，之後斷網了兩天不知道是不是因為這樣...</center>
+<br/>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/AIS3-2025/IMG_5080.jpg"
+                     
+                ></p>
+<center>第5還是第6天地下室的玻璃爆掉，名符其實的windows漏洞</center>
+
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> AIS3 2025 心得</li>
+        <li><strong>Author:</strong> Xavier</li>
+        <li><strong>Created at
+                :</strong> 2025-08-19 11:15:39</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-08-20 20:18:51
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/YenTing95015/yenting95015.github.io/2025/08/19/AIS3-2025/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                All Rights Reserved &#169; Xavier
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/AIS3/">#AIS3</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Security/">#Security</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Life/">#Life</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/06/30/ncu-course/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">中央資工修課心得</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">AIS3 2025 心得</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0"><span class="nav-text">Day0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1"><span class="nav-text">Day1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2"><span class="nav-text">Day2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3"><span class="nav-text">Day3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day4"><span class="nav-text">Day4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day5"><span class="nav-text">Day5</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day6"><span class="nav-text">Day6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day7"><span class="nav-text">Day7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%8C%E8%A8%98"><span class="nav-text">後記</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%B6%A3%E4%BA%8B"><span class="nav-text">其他趣事</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-light fa-code-compare"></i>&nbsp;&nbsp;<a href="/">Xavier</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        4 posts in total
+                    </span>
+                    
+                        <span>
+                            8.7k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
