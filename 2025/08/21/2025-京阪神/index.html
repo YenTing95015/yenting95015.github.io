@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Xavier">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/08/21/2025-京阪神/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2025 京阪神">
+<meta property="og:url" content="http://example.com/2025/08/21/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2025-08-21T02:21:00.000Z">
+<meta property="article:modified_time" content="2025-12-03T08:50:47.043Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Life">
+<meta property="article:tag" content="Travel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/profile.jpeg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpeg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/profile.jpeg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2025 京阪神 | Xavier
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file" rel="stylesheet">
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"20px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"english":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Xavier's Blog","subtitle":{"text":["Random post, CS x Daily x ... "],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/YenTing95015","instagram":null,"zhihu":null,"twitter":null,"email":"ianchen9299@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Profile":{"path":"/profile","icon":"fa-solid fa-user"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags/","icon":"fa-solid fa-tags"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Still building...","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/21 00:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Xavier
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/profile"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    PROFILE
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/profile"
+                        >
+                            <span>
+                                PROFILE
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5114.jpeg" alt="2025 京阪神" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">2025 京阪神</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/profile.jpeg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Xavier</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-21 10:21</span>
+        <span class="mobile">2025-08-21 10:21</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-12-03 16:50:47</span>
+            <span class="mobile">2025-12-03 16:50:47</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Life/">Life</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Travel/">Travel</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4.1k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>（有一堆照片在相機裡，待老弟把相機從高雄帶回來會再更新一次）<br>Photo by iPhone 13, iPhone 14 pro, Nikon z30</p>
+<p>這趟是久違的家庭旅行，上次和家人出國玩是2019了，年初老媽提議說要出國走走，地點我和老弟想，最後決定去關西，主要是京阪神三個城市<br>這次的規劃相對隨意，我和老弟只通過兩次電話討論，但也沒因為這樣出什麼包，還是玩得滿開心的</p>
+<h2 id="Day0-8-3"><a href="#Day0-8-3" class="headerlink" title="Day0 (8&#x2F;3)"></a>Day0 (8&#x2F;3)</h2><p>訂機票時AIS3的日程還沒出來，沒想到剛好訂到結束後一天，AIS3一結束馬上從新竹搭高鐵趕回高雄，到老弟的租屋處把雜物放一放就回飯店休息了<br>有出一個小包啦，老弟幫我帶的傘不知道放去哪，他很堅持有帶，這個問題困擾了我們一週，<del>結果回家後放在客廳</del></p>
+<h2 id="Day1-8-4"><a href="#Day1-8-4" class="headerlink" title="Day1 (8&#x2F;4)"></a>Day1 (8&#x2F;4)</h2><p>早上三點還四點就起床了，搭了飯店的機場接送到小港機場，人意外的挺多，準備出關時還有一群追星的在排隊的兩側（不敢拍）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3155%202.jpg"
+                     
+                ></p>
+<center>體感去東京的人更多一點</center>
+</br>
+
+<p>到了關西機場大概11點，入境現在幾乎全自動化了，VJW加護照掃一掃一下就到入國審查的窗口，移民官姐姐感覺被工作壓榨到不行毫無生氣的對我說話，總之入境滿順利的</p>
+<p>接著去領JR pass準備搭HARUKA到京都，機台的中文翻譯很迷卡了好一陣子，最後搭上約12點10分的車<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5088.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5089.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3167%202.jpg"
+                     
+                ></p>
+<center>無嘴怪貓主題的HARUKA</center>
+</br>
+
+<p>抵達京都大概1:30，非常經典到日本第一天要迷路一次，繞了半小時才找到靠近飯店的出口，先寄放行李後去了飯店外的購物中心買衣服，在GU我和老弟總共買了約15件才15000日幣（而且忘記拿折價券），俗到靠北，感覺以後不會想在台灣的GU消費了</p>
+<p>3點回到飯店check-in，是自助式的，結果不小心被我弄到死機，滿明顯應該是某個function沒有做好例外處理<del>（明明出來玩了還在找洞）</del>，還好後來換了機器和查詢方式後就沒問題了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3176%202.jpg"
+                     
+                ></p>
+<p>天氣和預期的差不多熱，先在房間休息了一下，5點去車站裡的拉麵小路吃晚餐<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5094.jpeg"
+                     
+                ></p>
+<center>京都塔，這幾天都在另一側活動這側都沒來到</center>
+</br>
+然後，又迷路了，感覺京都比新宿還要像迷宮餒，折騰半天結果在百貨公司裡面
+隨便找了一家坐下來，今天吃的是雞白湯
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5095.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3189%202.jpg"
+                     
+                ></p>
+<center>多點了一份煎餃，八方味道大勝</center>
+</br>
+
+
+<p>吃完後是自由活動時間，跑去一直想體驗的小鋼珠，總之就瞎打，我一開始還打到4円的機子，最後賺了200円，裡面不確定能不能拍照我就沒拍了，我第一台打的是EVA的，聲光效果很足；之後去換景品還搞不清楚狀況以為啥都沒贏到，櫃檯姐姐叫住我才知道有一個景品，然後在店外找好久才發現換錢的地方，其實就在隔壁</p>
+<p>第一天就差不多結束了，走回飯店的路上發現京都晚上也滿漂亮的<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5098.jpeg"
+                     
+                ></p>
+<center>拉麵小路外的天橋拍的，照片中這塊也是沒去到，<del>甚至不知道從哪過去</del></center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5099.jpeg"
+                     
+                ></p>
+<center>回來才知道購物中心叫AVANTI</center>
+</br>
+
+<h2 id="Day2-8-5"><a href="#Day2-8-5" class="headerlink" title="Day2 (8&#x2F;5)"></a>Day2 (8&#x2F;5)</h2><p>今天的行程是伏見稻荷大社和清水寺，為了拍千本鳥居5點就起床了，搭上6點的JR前往稻禾站</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5100.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5101.jpeg"
+                     
+                ></p>
+<p>抵達稻荷站，神社出來就到了，好險有早來真的沒什麼人，鳥居隨便我拍<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5103.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5111.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5113.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5114.jpeg"
+                     
+                ></p>
+<p>貓貓和logan paul(?<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5119.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5123.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5118.jpeg"
+                     
+                ><br></br></p>
+<p>然後就是開始爬山了，鑑於沒吃早餐餓的不行只爬到半山腰，但景色也很不錯了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5120.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5121.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5122.jpeg"
+                     
+                ></p>
+<center>豊川（幻視）</center>
+</br>
+
+<p>回到車站前才8點不到，在便利商店買了早餐吃然後回飯店休息一下準備搭公車前往清水寺<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5125.jpeg"
+                     
+                ></p>
+<center>這間應該是關西近郊專屬的便利商店，在天橋立也有看到</center>
+</br>
+
+<p>到清水寺大概9點半，人已經多起來了但不到擠，還是有一定的拍照體驗，本來有打算去走二年坂和三年坂，但後來人越來越多就沒去了，陪老弟買了一些紀念品後就往下個點走<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5146.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5147.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5149.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5152.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5153.jpeg"
+                     
+                ></p>
+<center>太熱了吃個剉冰</center>
+</br>
+
+<p>其實今天本來只有排伏見稻荷和清水寺，但沒想到這麼快就走完了，所以趕緊查了一下還有哪裡，最後決定去下鴨神社<br>下鴨神社和之前兩個點比起來就相對普通了，而且也比較偏僻一點走了一段時間，但人也少很多，體驗還是滿不錯的<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5154.jpeg"
+                     
+                ></p>
+<center>搭市營地鐵過去，人好少</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5158.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5160.jpeg"
+                     
+                ></p>
+<center>相對幽靜，外國人少很多</center>
+</br>
+
+<p>之後就回到飯店附近，午餐吃なか卯後就回去休息了，真的走累了今天沒打算再出去，晚餐再去了一次拉麵小路，不過是吃披薩，那間店就是網美店純吃氣氛，體驗中下</p>
+<p>晚餐吃完先去JR的櫃台劃位明天的指定席，然後去了購物中心的安利美特，夾到一隻樂奈超爽的<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5169.jpeg"
+                     
+                ></p>
+<center>可愛可愛可愛</center>
+</br>
+
+<h2 id="Day3-8-6"><a href="#Day3-8-6" class="headerlink" title="Day3 (8&#x2F;6)"></a>Day3 (8&#x2F;6)</h2><p>今天往近郊走去天橋立和伊根，抄別人的攻略搭城崎號到福知山在轉丹後鐵道到天橋立<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5173.jpeg"
+                     
+                ></p>
+<center>很有特色的丹後鐵道列車</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3263%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5177.jpeg"
+                     
+                ></p>
+<center>非常好風景</center>
+</br>
+
+<p>到站後先在車站領周遊券，之後搭纜車到天龍觀<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5180.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5184.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5188.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5193.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5196.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5194.jpeg"
+                     
+                ></p>
+<center>天龍觀上的小遊樂區，滿地髒髒的跳跳馬有點恐怖</center>
+</br>
+
+<p>接著搭船前往伊根，順便在船上餵海鷗，比想像中可怕手有被海鷗（還是老鷹）抓傷<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5201.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5202.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5203.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5205.jpeg"
+                     
+                ></p>
+<center>自衛隊招募，國軍人才招募中心請多學學</center>
+</br>
+
+<p>在伊根還有一次遊覽船，海鷗更多了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5210.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5214.jpeg"
+                     
+                ></p>
+<center>這隻直接等人來餵他</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5215.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5216.jpeg"
+                     
+                ></p>
+<p>接著在伊根舟屋附近走走，進了一家咖啡廳稍微休息一下<br>伊根真的滿美的，當初就該在排在這住一晚<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5219.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3332%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5221.jpeg"
+                     
+                ></p>
+<p>最後也是走累了，周遊券包含的傘松公園沒去到，搭同樣的路線回到京都<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5225.jpeg"
+                     
+                ></p>
+<center>福知山站，燒肉好像很有名但沒空停留</center>
+</br>
+
+<p>晚餐還是吃拉麵小路，換了一家但還是吃雞白湯，個人覺得第一天的比較好吃，還有日本拉麵真的好鹹喔<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5226.jpeg"
+                     
+                ></p>
+<p>吃完再去購物中心的唐吉訶德看看有沒有油油周邊能買，但只看到一堆迪士尼或三麗鷗的周邊，買了水果和飲料幫今天收尾<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5227.jpeg"
+                     
+                ></p>
+<center>有煙味</center>
+</br>
+
+<h2 id="Day4-8-7"><a href="#Day4-8-7" class="headerlink" title="Day4 (8&#x2F;7)"></a>Day4 (8&#x2F;7)</h2><p>今天的行程是奈良並離開京都，前三天太累今天就是睡到自然醒才起床，結果碰到難得的電車誤點，10點搭上了8點的車，最後大概11點到奈良，轉公車後大概11點半到奈良公園<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5237.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5238.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5240.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5241.jpeg"
+                     
+                ></p>
+<center>超老的鹿</center>
+</br>
+
+<p>午餐吃大阪王將，還是碳水炸彈最好吃，這樣1000円<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5247.jpeg"
+                     
+                ></p>
+<p>下午3點離開奈良到大阪，小迷航了一下才找到訂的公寓，這間真的滿讚的，周圍超市和連鎖店都有，都營地鐵和近鐵的站也都在附近，一個人一晚約台幣1000左右，缺點大概只有網路很爛<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3374%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3375%202.jpg"
+                     
+                ></p>
+<center>唐突入鏡</center>
+</br>
+
+<p>晚餐到近鐵站外面的超市買來自己煮，買了一大袋吃的喝的才10000円左右，包括幾盒和牛，超爽<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3381%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3382%202.jpg"
+                     
+                ></p>
+<center>部分食物照</center>
+</br>
+
+<p>晚上再到外面晃晃，拍幾張夜景<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3386%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3388%202.jpg"
+                     
+                ></p>
+<h2 id="Day5-8-8"><a href="#Day5-8-8" class="headerlink" title="Day5 (8&#x2F;8)"></a>Day5 (8&#x2F;8)</h2><p>今天的目的地是神戶，本來想說JR pass還有一天搭JR省錢，但懶得轉車了就搭近鐵，結果還是有轉到車，先到了尼崎市再到三宮，而且兩班都搭到普通車，浪費了快一小時，到了三宮後又又又迷路找觀光案內所買巴士的一日券<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3393%202.jpg"
+                     
+                ></p>
+<center>800円，有賺回來</center>
+</br>
+
+<p>弄了半天已經11點了，去薩莉亞吃午餐，日本的又比台灣便宜了一點，味道感覺沒差太多<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3394%202.jpg"
+                     
+                ></p>
+<center>披薩比前幾天在京都的網美店好吃</center>
+</br>
+
+<p>吃完後準備搭巴士去北野異人館，但恭喜上錯站了，我們上車的剛好是北野異人館的下一站，巴士又是環線，所以只好先去海邊的美利堅公園，但中午實在太熱拍了幾張照就離開了，本來這個點是晚上來看夜景的說<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5257.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5253.jpeg"
+                     
+                ></p>
+<center>一堆中國人在那邊空氣投籃 超好笑</center>
+</br>
+
+<p>搭上巴士回三宮再轉車到北野異人館，比想像中漂亮很多很有歐洲風情，到觀光案所買了一個可以參觀7個館的套票，售票的阿姨人很好，推薦了一個先爬坡比較不會累的路線給我們，沒錯又要爬，感覺出國練腿已經是固定行程了<br>套票好像3000円，但我覺得很值得，每個館各有特色而且都很漂亮，看得很開心<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5261.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5264.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5267.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5272.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5275.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5277.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5269.jpeg"
+                     
+                ></p>
+<center>這裡也有飛出君</center>
+</br>
+
+<p>最喜歡的是這間Ben’s house，很多酷標本，不知道真假就是了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5280.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5282.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5283.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5284.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5290.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5293.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5294.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5295.jpeg"
+                     
+                ></p>
+<center>奇幻風格的館，兩隻貓咪可愛</center>
+</br>
+
+<p>英國館是福爾摩斯主題，滿帥的<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5304.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5308.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5309.jpeg"
+                     
+                ></p>
+<p>逛完接近五點了，回到三宮站附近找燒肉吃，第一家居酒屋因為老弟沒滿20沒辦法招待只能再找<br>之後在巷子裡找到了一家應該是一般的燒肉店，味道和價錢都普通，沒吃飽回去後又去超市買了打折便當吃<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3467%202.jpg"
+                     
+                ></p>
+<p>神戶和近郊應該還有滿多點能去的，本來有想排有馬溫泉，另外就是夜景沒看到很扼腕，下次來關西應該會優先來</p>
+<h2 id="Day6-8-9"><a href="#Day6-8-9" class="headerlink" title="Day6 (8&#x2F;9)"></a>Day6 (8&#x2F;9)</h2><p>相對有規劃過的點基本上都走完了，最後這兩天就是大阪逛街，早上先去了黑門市場、心齋橋和道頓堀<br>黑門市場感覺就是給觀光客去的，物價偏貴，我們在一家天婦羅攤吃了早餐，然後買了章魚燒，都很普通<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3470%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3477%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3478%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3480%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3484%202.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5313.jpeg"
+                     
+                ></p>
+<p>接著去心齋橋的唐吉訶德，主要還是看有沒有周邊，有看到一個黛冬優子的景品但沒買下去，有點小後悔；然後去GU+UQ再買一些衣服，這次GU有記得拿折價券出來，又被結完帳的價格嚇到還和店員姐姐確認了一次沒有少算（我拿了兩籃我以為那是一籃的價格）<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5314.jpeg"
+                     
+                ></p>
+<center>固力果</center>
+</br>
+
+<p>午餐老弟找了一家拉麵，挺local的店家味道也很不錯，之後回公寓放東西，晚上再出來逛一次<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5317.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5316.jpeg"
+                     
+                ></p>
+<p>晚餐本來要吃馬肉，結果沒預約吃不到，另外找了一家大阪燒，味道普普但吃得超飽<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5318.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5319.jpeg"
+                     
+                ></p>
+<p>接著就分頭行動，我先去了百貨公司看北臉有沒有適合的後背包，但那間好像是主打最高級的產品線，一堆LV之類的奢侈品，北臉的櫃位看起來也是都高級貨，氣氛讓人卻步，待了一下就走了，再去了一趟心齋橋拍照<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5322.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5323.jpeg"
+                     
+                ></p>
+<p>接著就開始夾娃娃，先在一家GiGO花1000円抓到了一隻祥子，那台的配置我覺得滿扯的爪力超強還有超厚的矽膠防滑套，跟送沒兩樣<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5325.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5326.jpeg"
+                     
+                ></p>
+<center>我覺得mujica這個系列的臉都有點崩...</center>
+</br>
+
+<p>接著到一家Taito，看中了千束和瀧奈，千束滿順利就出貨了，瀧奈就抓的時候沒規劃好位置亂掉果斷認賠<br>最後來到namco，看到一隻被動到1&#x2F;3的阿農，本來以為會很順利結果把身上的現金都打完了，還請老弟送現金來給我，最後好險有出貨，特別感謝當時的店員小哥一開始幫我保留機台和告訴我哪裡可以領錢，誠にありがとうございます，總共這趟抓的四隻平均一隻500台幣，應該是有便宜一點<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5330.jpeg"
+                     
+                ></p>
+<center>namco裡面的立牌但我不認得這部...</center>
+</br>
+
+<p>今天就到這邊結束，曬一下夜景和戰利品<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5331.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5332.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5333.jpeg"
+                     
+                ></p>
+<h2 id="Day7-8-10"><a href="#Day7-8-10" class="headerlink" title="Day7 (8&#x2F;10)"></a>Day7 (8&#x2F;10)</h2><p>今天的點只有大阪城，所以睡得很晚10點才出門，大阪城沒買周遊券上通天閣沒辦法快速通關，看到排隊人龍就算了，在外面換晃了一圈結束這回合<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5347.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5339.jpeg"
+                     
+                ></p>
+<center>外面的電梯超突兀的，然後真的有一堆人在拍服部的那張照片</center>
+</br>
+
+<p>意外走到讀賣電視台，拍了少年偵探團和基德<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5353.jpeg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5354.jpeg"
+                     
+                ></p>
+<center>糊</center>
+</br>
+
+<p>午餐在附近的辦公大樓一樓找到一間沾麵，也是普普通通，來到大阪後最好吃的反而是自己煮的和超市的便當最好吃<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5356.jpeg"
+                     
+                ></p>
+<p>下午老弟走累了先回去休息，我和老媽決定去梅田走走，一樣分頭行動<br>我先去了求結緣的露天神社買了結緣和健康御守，抽了個戀愛籤是大吉，籤詩內容翻譯後還是不太懂，但大吉很不錯對吧<br>然後又去了一家百貨公司看北臉背包，這次的櫃位就滿一般的，商品和價格都在預想範圍內，但算了一下好像沒比較便宜，就沒下手了，倒是看到好幾件紫標的衣服和外套超帥，但想到昨天在夾娃娃噴過錢了還是不忍刷卡</p>
+<p>之後在地下閒晃，又碰到好幾間街機，但理智告訴我別再玩了，最後只扭了一個mygo扭蛋，又抽到阿農，本來想要rikki或soyo，但阿農也滿可愛就是了</p>
+<p>另外梅田的地下超恐怖，感覺是10倍大的北車，人又超多，前面再找百貨公司時就感覺到很複雜了所以不敢走太遠，最後沒迷路真是萬幸，還好當初住宿沒訂在這不然一定鬼打牆</p>
+<p>回到公寓，今晚決定煎和牛，之前看評論說抽油煙機不給力會把房間搞得都油煙味，先把房間門關上窗戶打開預備，結果還好嘛；怕吃不飽還買了便當和壽司，結果吃超飽，這一整頓三個人應該1000台幣不到，真的是有錢人才國旅<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3541%202.jpg"
+                     
+                ></p>
+<p>吃完飯再去了附近的唐吉訶德，這間就很在地的感覺了，連腳踏車都有賣，自然沒有我要的周邊，也有看了一下包包和衣帽意外滿多選擇的，有路上很多人在背的coleman，但夾層有點少沒買，回去前去了seven看看有沒有好吃的冰，但沒找到中意的，最後只買了一罐維他命C，想到明天要回國了已經憂鬱起來<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/2/IMG_5359.jpeg"
+                     
+                ></p>
+<center>上本町最後一夜</center>
+</br>
+
+<h2 id="Day8-8-11"><a href="#Day8-8-11" class="headerlink" title="Day8 (8&#x2F;11)"></a>Day8 (8&#x2F;11)</h2><p>早起把行李收拾好，準備搭機場巴士，這個交通方式也是前天意外發現的，沒想到近鐵站外面就有站點，不用拖著超重的行李擠電車，票價也不算貴，住這間公寓真的賺翻了，下次來大阪優先選擇<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2025-%E4%BA%AC%E9%98%AA%E7%A5%9E/1/IMG_3548%202.jpg"
+                     
+                ></p>
+<p>大概40分鐘就到第一航廈，趕緊報到辦出境，在免稅店買了一些親戚要的東西，簡單吃了午餐就準備登機</p>
+<p>回程一樣是虎航，因為幾個人遲到有點delay，回程的乘坐體驗比較不好空姐一直推銷免稅品，前面的人的午餐又超香讓我好餓，餓著肚子又睡不著小難受</p>
+<p>抵達小港馬上就有回國症候群了，好想再去日本QQ，搭捷運回到老弟租屋處拿東西回桃園，這次的旅程正式結束了</p>
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 2025 京阪神</li>
+        <li><strong>Author:</strong> Xavier</li>
+        <li><strong>Created at
+                :</strong> 2025-08-21 10:21:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-12-03 16:50:47
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/YenTing95015/yenting95015.github.io/2025/08/21/2025-京阪神/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                All Rights Reserved &#169; Xavier
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Life/">#Life</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Travel/">#Travel</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/08/19/AIS3-2025/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">AIS3 2025 心得</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">2025 京阪神</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0-8-3"><span class="nav-text">Day0 (8&#x2F;3)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1-8-4"><span class="nav-text">Day1 (8&#x2F;4)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-8-5"><span class="nav-text">Day2 (8&#x2F;5)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3-8-6"><span class="nav-text">Day3 (8&#x2F;6)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day4-8-7"><span class="nav-text">Day4 (8&#x2F;7)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day5-8-8"><span class="nav-text">Day5 (8&#x2F;8)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day6-8-9"><span class="nav-text">Day6 (8&#x2F;9)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day7-8-10"><span class="nav-text">Day7 (8&#x2F;10)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day8-8-11"><span class="nav-text">Day8 (8&#x2F;11)</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-light fa-code-compare"></i>&nbsp;&nbsp;<a href="/">Xavier</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        5 posts in total
+                    </span>
+                    
+                        <span>
+                            11.1k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
