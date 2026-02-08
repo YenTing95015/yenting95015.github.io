@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Xavier">
+    
+    <!-- Completely eliminate flash of wrong theme -->
+    <script>
+        (function() {
+            const THEME_KEY = "REDEFINE-THEME-STATUS";
+            const DARK = "dark", LIGHT = "light";
+            
+            // Get preferred theme
+            function getTheme() {
+                try {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        const { isDark } = JSON.parse(saved);
+                        return isDark ? DARK : LIGHT;
+                    }
+                } catch (e) {}
+                
+                return matchMedia("(prefers-color-scheme: dark)").matches ? DARK : LIGHT;
+            }
+            
+            // Apply theme to document
+            function applyTheme(theme) {
+                const isDark = theme === DARK;
+                const root = document.documentElement;
+                
+                // Set data attribute for CSS variables
+                root.setAttribute("data-theme", theme);
+                
+                // Set classes for compatibility
+                root.classList.add(theme);
+                root.classList.remove(isDark ? LIGHT : DARK);
+                root.style.colorScheme = theme;
+            }
+            
+            // Initial application
+            const theme = getTheme();
+            applyTheme(theme);
+            
+            // Listen for system preference changes
+            matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ({ matches }) => {
+                // Only update if using system preference (no localStorage entry)
+                if (!localStorage.getItem(THEME_KEY)) {
+                    applyTheme(matches ? DARK : LIGHT);
+                }
+            });
+            
+            // Set body classes once DOM is ready
+            if (document.readyState !== "loading") {
+                document.body.classList.add(theme + "-mode");
+            } else {
+                document.addEventListener("DOMContentLoaded", () => {
+                    document.body.classList.add(theme + "-mode");
+                    document.body.classList.remove((theme === DARK ? LIGHT : DARK) + "-mode");
+                });
+            }
+        })();
+    </script>
+    
+    <!-- Critical CSS to prevent flash -->
+    <style>
+        :root[data-theme="dark"] {
+            --background-color: #202124;
+            --background-color-transparent: rgba(32, 33, 36, 0.6);
+            --second-background-color: #2d2e32;
+            --third-background-color: #34353a;
+            --third-background-color-transparent: rgba(32, 33, 36, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #ffffff;
+            --second-text-color: #eeeeee;
+            --third-text-color: #bebec6;
+            --fourth-text-color: #999999;
+            --default-text-color: #bebec6;
+            --invert-text-color: #373D3F;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(255, 255, 255, 0.08);
+            --shadow-color-2: rgba(255, 255, 255, 0.05);
+        }
+        
+        :root[data-theme="light"] {
+            --background-color: #fff;
+            --background-color-transparent: rgba(255, 255, 255, 0.6);
+            --second-background-color: #f8f8f8;
+            --third-background-color: #f2f2f2;
+            --third-background-color-transparent: rgba(241, 241, 241, 0.6);
+            --primary-color: #0066CC;
+            --first-text-color: #16171a;
+            --second-text-color: #2f3037;
+            --third-text-color: #5e5e5e;
+            --fourth-text-color: #eeeeee;
+            --default-text-color: #373D3F;
+            --invert-text-color: #bebec6;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --selection-color: #0066CC;
+            --shadow-color-1: rgba(0, 0, 0, 0.08);
+            --shadow-color-2: rgba(0, 0, 0, 0.05);
+        }
+        
+        body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+        
+        /* Apply body classes as soon as DOM is ready */
+        :root[data-theme="dark"] body {
+            background-color: var(--background-color);
+            color: var(--default-text-color);
+        }
+    </style>
+    
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2026/01/19/2026-北海道/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+    
+    
+        
+        <meta name="description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2026 北海道">
+<meta property="og:url" content="http://example.com/2026/01/19/2026-%E5%8C%97%E6%B5%B7%E9%81%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Hexo Theme Redefine, Redefine Your Hexo Journey.">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/redefine-og.webp">
+<meta property="article:published_time" content="2026-01-19T09:53:04.000Z">
+<meta property="article:modified_time" content="2026-02-08T12:20:16.514Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Life">
+<meta property="article:tag" content="Travel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/redefine-og.webp">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/profile.jpeg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/profile.jpeg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/profile.jpeg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            2026 北海道 | Xavier
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/tailwind.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap" rel="stylesheet">
+    
+    
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file" rel="stylesheet">
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"20px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"delete_mask":false,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":true,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"pangu_js":false,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"english":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap# Font URL to CSS file"},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":false,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"side_tools":{"gear_rotation":true,"auto_expand":false},"open_graph":{"enable":true,"image":"/images/redefine-og.webp","description":"Hexo Theme Redefine, Redefine Your Hexo Journey."},"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Xavier's Blog","subtitle":{"text":["Random post, CS x Daily x ... "],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":true,"family":"Noto Serif TC","url":"https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200..900&display=swap"},"social_links":{"enable":true,"style":"center","links":{"github":"https://github.com/YenTing95015","instagram":null,"zhihu":null,"twitter":null,"email":"ianchen9299@gmail.com"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"11.4.1"}},"version":"2.8.5","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"Profile":{"path":"/profile","icon":"fa-solid fa-user"},"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags/","icon":"fa-solid fa-tags"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":"Still building...","show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2025/1/21 00:00:00"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+
+<body>
+	<div class="progress-bar-container">
+	
+
+	
+	<span class="pjax-progress-bar"></span>
+	<!--        <span class="swup-progress-icon">-->
+	<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+	<!--        </span>-->
+	
+</div>
+
+<main class="page-container" id="swup">
+
+	
+
+	<div class="main-content-container flex flex-col justify-between min-h-dvh">
+		<div class="main-content-header">
+			<header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Xavier
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/profile"
+                                        >
+                                    <i class="fa-solid fa-user fa-fw"></i>
+                                    PROFILE
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/archives"
+                                        >
+                                    <i class="fa-regular fa-archive fa-fw"></i>
+                                    ARCHIVES
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/tags/"
+                                        >
+                                    <i class="fa-solid fa-tags fa-fw"></i>
+                                    TAGS
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/profile"
+                        >
+                            <span>
+                                PROFILE
+                            </span>
+                            
+                                <i class="fa-solid fa-user fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/archives"
+                        >
+                            <span>
+                                ARCHIVES
+                            </span>
+                            
+                                <i class="fa-regular fa-archive fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/tags/"
+                        >
+                            <span>
+                                TAGS
+                            </span>
+                            
+                                <i class="fa-solid fa-tags fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">7</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+		</div>
+
+		<div class="main-content-body transition-fade-up">
+			
+
+			<div class="main-content">
+				<div class="post-page-container flex relative justify-between box-border w-full h-full">
+	<div class="article-content-container">
+
+		<div class="article-title relative w-full">
+			
+			
+			
+			<img src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5815.JPG" alt="2026 北海道" class="w-full h-60 sm:h-72 md:h-80 object-cover sm:rounded-t-large dark:brightness-75" />
+			
+			<div class="w-full flex items-center absolute bottom-0 justify-start">
+				<h1 class="article-title-cover text-center mx-6 my-6 text-second-text-color bg-background-color-transparent px-4 py-3 text-3xl sm:text-4xl md:text-5xl font-semibold backdrop-blur-lg rounded-xl border border-border-color ">2026 北海道</h1>
+			</div>
+			
+		</div>
+
+		
+		<div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+			<div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+				<img src="/images/profile.jpeg">
+			</div>
+			<div class="info flex flex-col justify-between">
+				<div class="author flex items-center">
+					<span class="name text-default-text-color text-lg font-semibold">Xavier</span>
+					
+					<span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+					
+				</div>
+				<div class="meta-info">
+					<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2026-01-19 17:53:04</span>
+        <span class="mobile">2026-01-19 17:53:04</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2026-02-08 20:20:16</span>
+            <span class="mobile">2026-02-08 20:20:16</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Life/">Life</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Travel/">Travel</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fa-regular fa-typewriter"></i>&nbsp;<span>4k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fa-regular fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+				</div>
+			</div>
+		</div>
+		
+
+		
+
+
+		<div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+			<p>25 年 9 月初時刷到了虎航的促銷消息，抱著試試看的心情在當天上線搶票，沒想到還真給我搶到了新千歲到桃園1111 元的價格，雖然知道可能會被老爸罵到臭頭（最後沒有），但還是大卡一刷買下去了，人生第一次的看雪與國外獨旅正式成行</p>
+<p>這次拖延症大發作，行程基本上都在 12 月才搞定，還好最後沒出什麼包，最後飛機飛不起來還讓我多賺了一天免費假期，整體應該是幾次日本行中體驗最佳的一次</p>
+<h2 id="Day1-1-11"><a href="#Day1-1-11" class="headerlink" title="Day1 (1&#x2F;11)"></a>Day1 (1&#x2F;11)</h2><p>出發日期訂在了金盾決賽後的後天，但顯然我高估自己了沒進，早知道多排幾天，但前一天也有好厲駭的課就是了<br>去程是 6 點的飛機，3 點起床叫了 uber 到機場，一路順利的抵達了新千歲，出境辦完先去國內線看 miku<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5756.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5757.JPG"
+                     
+                ></p>
+<center>超愛，直接花了 1000 多買週邊</center>
+</br>
+
+<p>因為晚上要吃吃到飽，午餐就便利商店隨便吃了，買了機場巴士搭了約 1 小時到札幌市區<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5764.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5765.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5767.JPG"
+                     
+                ></p>
+<center>沿途的一些風景，第一次看到雪挺激動的，還有經過火腿隊主場（沒拍到）</center>
+</br>
+先到飯店放行李，這次五天都住在薄野十字路口的東橫inn a.k.a 紅燈區，但算偏外圍的地方，風俗店還沒那麼多，當初訂的時候運氣挺好，五晚含早餐大概 7800，貍小路也在附近，下次來還住
+
+<p>行李放好後前往第一個點札幌啤酒博物館，走到大通公園搭公車可以直達<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5773.JPG"
+                     
+                ></p>
+<center>也在大通公園裡的札幌電視塔，每天都經過結果忘記去了==</center>
+</br>
+
+<p>車程約半小時，整體規模我覺得以博物館來說算偏小，加上出發前幾天 yt 推給我札幌啤酒的歷史介紹，所以一下就逛完了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5775.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5778.JPG"
+                     
+                ><br>逛完回一樓喝啤酒，札幌黑標有喝過了所以點了經典<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5780.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5782.JPG"
+                     
+                ></p>
+<center>相當順口，我覺得比黑標好喝</center>
+</br>
+
+<p>離吃晚餐還有一段時間，在博物館外面閒晃，雪也變大了，總算有正式來到雪國的感覺<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5786.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5787.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5791.JPG"
+                     
+                ><br>隔壁也剛好是一間購物中心，在裡面的 workman 先買了幾件衣服，價格比 gu 還扯，一件大概 300 台幣；裡面也有 tower records，還有陽菜親簽<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5797.JPG"
+                     
+                ></p>
+<center>好婆</center>
+</br>
+
+<p>晚餐時間到，預約了博物館旁的成吉思汗烤肉，就是烤羊肉和蔬菜，無酒精飲料的吃到飽方案大概 950 台幣，肉的種類偏少，總共才五種吧，還有一些單點小菜炸物和白飯，肉質普普，蔬菜沒味道，但我還是吃得很爽<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5805.JPG"
+                     
+                ></p>
+<center>最後只吃了 10 盤左右，真的滿油的，比較喜歡羊肉爐</center>
+</br>
+
+<p>吃完回購物中心看了一下扭蛋和 gu，沒啥收穫就決定先回市區了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5809.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5811.JPG"
+                     
+                ></p>
+<center>雪沒變小，晚上更美了</center>
+</br>
+
+<p>回飯店 check in，接著再出門看薄野十字路口的 nikka 地標，離飯店超近走路 2 分鐘就到了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5818.JPG"
+                     
+                ></p>
+<center>人超多，還聽到日本人在笑觀光客</center>
+</br>
+
+<p>今天行程就到這邊了，回飯店早早休息為明天滑雪做準備<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5831.JPG"
+                     
+                ></p>
+<h2 id="Day2-1-12"><a href="#Day2-1-12" class="headerlink" title="Day2 (1&#x2F;12)"></a>Day2 (1&#x2F;12)</h2><p>今天是滑雪日，報了 klook 上的一日全包行程，就不用自己在花時間處理交通雪具雪票的問題了，價格算下來也和自己搞差不多；集合地點也在飯店附近，走路 10 分鐘左右吧，比較意外的是他在紅燈區深處，附近全是牛郎店和各種主題酒吧（又忘記拍了，真的超多）</p>
+<p>領雪具就花了快一小時，9 點上巴士，到手稻 10 點左右，早上大概把落葉飄學完<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5846.JPG"
+                     
+                ></p>
+<center>雪超粉，跌了幾次都不會痛，我甚至忘記穿防摔褲</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5848.JPG"
+                     
+                ></p>
+<center>午餐雪場的函館拉麵，比預期好吃</center>
+</br>
+
+<p>寫到這發現沒照片可以放了，滑的時候根本沒時間讓你拍，一把手套拿出來手馬上凍僵，接著就文字敘述一下<br>下午再複習了一下落葉飄，然後教練帶我們去搭纜車從高點慢慢滑降，這時我已經學的差不多了，除了教練說要停下的地方外我都沒有跌倒，最後教練教了 c turn，之後就直接給我纜車卡讓我自己滑，他繼續教我們這組的其他人，最後有自己完整滑了一趟，然後纜車就關了，好像是因為雪太大提早關</p>
+<p>整體滑雪心得的部分，從零到一我覺得挺難的，一開始平衡不好抓，但抓到感覺後接下來的各種移動應該就能速通，我甚至覺得再多滑一小我就會 s turn 了，最後自己去滑之前也有和教練閒聊一下這座雪場的難度，結過意外的教練說纜車下來的地方大概就是高級道了，其餘大部分地方也有中級，早知道多排一天了，滑下來的速度感真的很爽</p>
+<p>另外當初我明明是填中文教學，結果我分到和三個馬來西亞不是華人的姐姐一組，變成全程幾乎都用英文學了，但還是可以用中文和教練問問題啦，一整團的教練都是中港台的人</p>
+<p>回程超累睡死，回到薄野大概 7 點，晚餐買了北海道才有的 seicomart 超市便當和霜淇淋，洗完澡倒頭就睡結束這天<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5861.JPG"
+                     
+                ></p>
+<center>哈密瓜霜淇淋 超好吃</center>
+
+<h2 id="Day3-1-13"><a href="#Day3-1-13" class="headerlink" title="Day3 (1&#x2F;13)"></a>Day3 (1&#x2F;13)</h2><p>今天是散步行程，主要是北海道大學和二条市場<br>早餐要吃海鮮丼，忍痛放棄飯店免費早餐，8 點起床走了 10 分鐘到二条市場，本來要吃一家叫どんぶり茶屋，結果走錯店進到這家第一海鮮丸，點了鮭魚親子丼大概 500 台幣，鮭魚卵超鮮但好膩，附的螃蟹味噌湯超好喝，</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5863.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5865.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5866.JPG"
+                     
+                ></p>
+<center>杯子很帥很想要</center>
+</br>
+
+<p>吃完在市場內逛逛，但東西其實滿少的，決定直接離開去北海道大學<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5867.JPG"
+                     
+                ></p>
+<center>應該是最有名的大磯，但好像沒看到排隊</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5870.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5873.JPG"
+                     
+                ></p>
+<center>路上烏鴉感覺比東京大阪還多</center>
+</br>
+
+<p>北海道大學在JR札幌站附近而已，為了省錢決定直接用走的，先從地下道從薄野走到札幌，有暖氣舒服多了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5874.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5875.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5876.JPG"
+                     
+                ><br>從一個出口出來走大約十分鐘就會到北海道大學正門<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5877.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5878.JPG"
+                     
+                ><br>第一個點先來建校的農學院<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5881.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5883.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5888.JPG"
+                     
+                ></p>
+<center>這裡不能停車</center>
+</br>
+
+<p>然後慣例來看一下資工系<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5889.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5891.JPG"
+                     
+                ><br>接著往地圖上看到的馬場前進，結果好像天氣太冷馬都被關起來了，但白色校園還是很美<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5893.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5894.JPG"
+                     
+                ></p>
+<center>這裡是牧場的樣子，感覺有中央一半大</center>
+</br>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5896.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5898.JPG"
+                     
+                ><br>校園真的超大，走回接近正門的地方已 11 點了，在校內 seicomart 買麵包咖啡當午餐<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5899.JPG"
+                     
+                ></p>
+<center>順便買了北海道大學提袋，假裝自己在這邊唸書</center>
+</br>
+
+<p>吃完把剩下的校園逛完<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5901.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5902.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5906.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5903.JPG"
+                     
+                ></p>
+<center>秋天這邊應該會是銀杏大道，下次還來</center>
+</br>
+
+<p>結果今天行程就這樣被我走完了，那只好照傳統開始逛電器店，先逛了附近的ヨドバシカメラ，但想買的一些東西都沒忍心下手<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5918.JPG"
+                     
+                ></p>
+<center>雷蛇區的李哥還停留在五冠</center>
+</br>
+
+<p>逛完腳已經走不太動了，決定去完吉伊卡哇的店和 gu 買衣服就先回飯店休息<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5919.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5920.JPG"
+                     
+                ></p>
+<center>幫人代購北海道限定款</center>
+</br>
+
+<p>晚餐吃了餃子王將碳水炸彈餐，然後去了安利美特，結果遇到暴風雪走得超狼狽，雨傘還被吹壞了，到了安利美特已經下定決心要收陽菜專輯結果也沒貨，很是失望，還好回程在 GiGO 夾到了一隻咲季，明天也要早起趕車，今天也早早睡了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5925.JPG"
+                     
+                ></p>
+<center>炒飯很頂但太少了，餃子也是</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6161.JPG"
+                     
+                ></p>
+<center>可愛捏，回臺灣後也正式入坑了</center>
+
+<h2 id="Day4-1-14"><a href="#Day4-1-14" class="headerlink" title="Day4 (1&#x2F;14)"></a>Day4 (1&#x2F;14)</h2><p>今天要去小樽，早起到札幌站趕 jr，結果因為大雪 delay 了，本來想先去朝里車站只能放棄，外面的溫度我應該也沒法待太久，就直接先搭到小樽站了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5927.PNG"
+                     
+                ></p>
+<center>目前人生體驗過最低溫</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5929.JPG"
+                     
+                ><br>第一站先去小樽水族館，到公車站順便確定晚上去天狗山的車次，結果工作人員直接說今天因為風太大纜車停駛，這趟唯一的夜景行程泡湯了QQ，總之先上了公車，搭了半小時到水族館<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5930.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5932.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5934.JPG"
+                     
+                ></p>
+<center>到着，前面的樂園冬天休息</center>
+</br>
+
+<p>還沒開館，先到水族館上面的祝津展望台看看<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5942.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5943.JPG"
+                     
+                ></p>
+<center>都沒人很好拍，之後還架了腳架拍自己</center>
+</br>
+
+<p>回到水族館當今天一位入場的人，整體偏老舊，但還是滿好逛的，有一些高緯度才有的生物和深海魚<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5973.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5983.JPG"
+                     
+                ></p>
+<center>超酷的魚兒們</center>
+</br>
+
+<p>也有Synthesizer V 的人物們當導覽<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5985.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5958.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6019.JPG"
+                     
+                ></p>
+<p>但來這最主要的目的是看企鵝走路，第一場是 11:30，在這之前還有海獅海豚秀能看<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6002.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6009.JPG"
+                     
+                ></p>
+<p>看完就接著企鵝們了，牠們會沿著跑道走兩圈，拍攝時間很充裕<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_5992.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6010.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6015.JPG"
+                     
+                ></p>
+<p>看完就接著吃午餐，本來預計要回市區吃有名的若雞時代，但我太餓了決定在水族館餐廳解決<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6018.JPG"
+                     
+                ></p>
+<center>超普的味噌拉麵</center>
+</br>
+
+<p>吃完搭車回市區，從車站走到小樽運河<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6023.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6024.JPG"
+                     
+                ></p>
+<center>chill crow</center>
+</br>
+
+<p>抵達運河，人快凍僵了，這本來是天狗山結束才會來，感覺晚上會漂亮很多<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6029.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6030.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6032.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6036.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6047.JPG"
+                     
+                ></p>
+<center>附近有個幾乎沒人發現的高處，晚上從這一定超好拍</center>
+</br>
+
+<p>接著往堺町通り商店街走，可以一路逛回南小樽站搭回札幌，這條就是一堆有名的伴手禮和手工藝品店<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6058.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6063.JPG"
+                     
+                ></p>
+<center>一堆冰淇淋中選了這家超濃抹茶，700日幣好貴但好好吃</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6064.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6065.JPG"
+                     
+                ></p>
+<center>來北菓樓和六花亭買伴手禮</center>
+</br>
+
+<p>也幸運看到蒸氣鐘報時<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6069.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6074.JPG"
+                     
+                ></p>
+<p>最後一段爬上這段急坂就到南小樽了，我也走不動了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6075.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6076.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6079.JPG"
+                     
+                ></p>
+<center>jr 又因為大雪誤點</center>
+</br>
+
+<p>上車又睡死了，回到札幌大概才 4 點，不知道做啥又去夾娃娃，狸小路裡有間 TAiTO 還沒攻略，結果大爆死噴了一堆錢啥都沒抓到，懊惱的回飯店了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6083.JPG"
+                     
+                ></p>
+<center>TAiTO 出來有人在發免費紅牛拿了一罐，好像是 apex 大師賽在札幌辦的贊助</center>
+</br>
+
+<p>晚餐前看到今天開始麥當勞有和東方合作的雞塊，就決定買來嘗鮮了，以為有特典可以拿結果沒有，只是用東方名義推新口味雞塊和醬，味道也沒啥特別的，給到 npc，結束今天行程<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6086.JPG"
+                     
+                ></p>
+<center>黑胡椒口味雞塊和烤肉醬和不知道什麼醬，原味加糖醋醬比較好吃...</center>
+
+<h2 id="Day5-1-15"><a href="#Day5-1-15" class="headerlink" title="Day5 (1&#x2F;15)"></a>Day5 (1&#x2F;15)</h2><p>想去的點都逛的差不多了，今天就去北海道神宮和逛宅店夾娃娃扭蛋<br>先搭地鐵到円山公園，再從円山公園一路晃過去<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6089.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6095.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6100.JPG"
+                     
+                ></p>
+<p>參拜完買了御守就差不多了，走表參道回地鐵站<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6102.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6104.JPG"
+                     
+                ></p>
+<center>把兩座主要鳥居都走過了</center>
+</br>
+
+<p>搭回札幌後先來逛 tower records，還是沒有陽菜的專輯，但這間的歌單超讚，待了一個多小時，同一層還有 jump 的周邊店和一些扭蛋，扭了一隻 miku<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6115.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6113.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6114.JPG"
+                     
+                ></p>
+<center>心心念念的 moon glow 黑膠，還有星街的 specter</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6112.JPG"
+                     
+                ></p>
+<center>who's in sapporo</center>
+</br>
+
+<p>逛完也中午了，想到這趟還沒吃到咖哩，找到了一家狸小路外面印度人開的，烤餅很好吃<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6117.JPG"
+                     
+                ></p>
+<p>下午就是宅店行程了，先去 norbesa 逛整整兩層樓的駿河屋，第二層甚至有 1&#x2F;4 都是 miku，結果一樣啥都沒買，看到想要的景品很多我都確定機台可以夾，但現在回顧當初就該直接用買的，因為我只夾到一隻…</p>
+<p>然後來頂樓搭摩天輪，意外發現有 miku 車廂可以搭，300 台幣附一張特典貼紙，直接買了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6131.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6120.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6124.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6125.JPG"
+                     
+                ></p>
+<center>繞一圈大概十分鐘，車廂內還有 miku 唱歌給你聽</center>
+</br>
+
+<p>接著往 round1 走，但如同前述這邊又空手而歸了，但我很不甘心跑回TAiTO，總算夾到到一隻 miku<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6198.JPG"
+                     
+                ></p>
+<center>回來補拍 可愛</center>
+</br>
+
+<p>回飯店把東西放了，最後一晚吃薄野拉麵橫町裡的超濃厚辛味噌拉麵<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6133.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6135.JPG"
+                     
+                ></p>
+<center>辣度有 1~15，點了 5 有點撐不住，整體吃起來有點像沾麵</center>
+</br>
+
+<p>吃完在外面等 miku 的整點報時，結果只有 10 秒左右，感覺被騙了…<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6137.JPG"
+                     
+                ></p>
+<p>明天要早起趕飛機，就先回飯店了，第一次的國外獨旅也差不多要結束了…嗎</p>
+<h2 id="Day6-1-16"><a href="#Day6-1-16" class="headerlink" title="Day6 (1&#x2F;16)"></a>Day6 (1&#x2F;16)</h2><p>今天是 11:50 的飛機，加上我想逛新千歲機場，所以打算早點過去，收好行李去搭機場巴士，結果工作人員說因為路況今天到機場可能會花 2 個小時，聽到覺得大事不妙，決定馬上換搭 jr，結果要先上地鐵時人太多上不去，又趕快請工作人員幫忙處理出站用走的去札幌，好在最後趕上了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6139.JPG"
+                     
+                ></p>
+<center>人不少，還好今天沒有因為大雪 delay</center>
+</br>
+
+<p>到了機場就差不多是報到時間了，只能直接去報到和出海關，至少是確定不會遲到了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6140.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6142.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6145.JPG"
+                     
+                ></p>
+<center>機場亂拍和最後一餐拉麵(?</center>
+</br>
+
+<p>上了飛機後精彩的事發生了，一開始說有地方故障要維修，也的確有聽到怪聲，然後就是漫長的等待，後來還看到我們的行李被卸下飛機，大概就知道這台飛不起來了，延誤的時間也已經讓我的不便險可以領錢，只是還不知道接下來會怎麼處理；等了快四小時後被請下了飛機，過完海關被通知改到明天晚上 7 點，也給了我們一人 16000 日幣補償，正式多一天免費假期囉<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6150.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6154.JPG"
+                     
+                ></p>
+<p>把一些文件領一領也 5 點了，趕緊看要住哪，沒打算回札幌，最後訂了千歲市的一家飯店一晚 12100 日幣，晚餐我記得吃了快 2000 吧，反正知道是免費的就亂花了，吃完回飯店泡了浴場，打電話跟家裡報備後就睡了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6157.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6158.JPG"
+                     
+                ></p>
+<center>雪又變大，行李箱超難拖</center>
+
+<h2 id="Bonus-Day-1-17"><a href="#Bonus-Day-1-17" class="headerlink" title="Bonus Day (1&#x2F;17)"></a>Bonus Day (1&#x2F;17)</h2><p>起床後吃了飯店早餐，查了一下千歲市有哪裡可以去，發現了支笏湖，但超遠就算了，決定在附近逛逛就好，去了 aeon 和一間書店<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6168.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6167.JPG"
+                     
+                ></p>
+<center>FX交易教學漫畫??</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6170.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6174.JPG"
+                     
+                ></p>
+<center>幫實驗室同學代購老麥兒童餐玩具和學偶扭蛋，我自己夾娃娃又爆死了</center>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6166.JPG"
+                     
+                ></p>
+<center>沒想到這裡也有艾司摩爾辦公室</center>
+</br>
+
+<p>不知道做啥了，決定先到機場，還有四個小時讓我慢慢逛<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6178.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6179.JPG"
+                     
+                ></p>
+<center>意外的往機場沒啥人</center>
+</br>
+
+<p>到機場後隨便吃了便利商店後再逛了一次 snow miku town，發現這個湯咖哩，但怕回台灣會被沒收就沒買了；最後又發現機場有超多 miku 周邊能夾，又砸了一波錢，然後，沒了，反正保險最後扣一扣應該還賺了2000左右，也沒那麼心痛了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6187.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6188.JPG"
+                     
+                ></p>
+<center>倒是在夾娃娃機區發現這台快絕版的 diva 街機</center>
+</br>
+
+<p>玩完也到報到時間了，但上了飛機後昨天那個故障聲音又出現了，還好這次沒事，但最後還是因為除雪 delay 了一小時左右，反正平安歸來，結束這次的北海道之旅，希望最快 2027 可以再來一遍<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6189.JPG"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/2026-%E5%8C%97%E6%B5%B7%E9%81%93/IMG_6190.JPG"
+                     
+                ></p>
+<!--
+## 後記
+### 國外獨旅的心得
+沒想像中可怕，至少在日本應該還是挺安全的，另外就是自由度拉滿，不用管任何人可以隨便跑真的好爽，大推
+### 下雪應對
+沒遇到大雪的話真的不會太冷，天氣偏乾，我甚至覺得中壢比較冷，反正我平常在中壢穿的冬衣在北海道是夠用的，最後就是小心結冰路面真的很滑，每天都看到有人滑倒，我自己是穿防水中筒登山靴，踏進積雪裡不容易濕也很防滑，至少我沒滑倒過-->
+
+
+
+
+
+		</div>
+
+		
+		<div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+			<div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 2026 北海道</li>
+        <li><strong>Author:</strong> Xavier</li>
+        <li><strong>Created at
+                :</strong> 2026-01-19 17:53:04</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2026-02-08 20:20:16
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://github.com/YenTing95015/yenting95015.github.io/2026/01/19/2026-北海道/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                All Rights Reserved &#169; Xavier
+            
+        </li>
+    </ul>
+</div>
+
+		</div>
+		
+
+		
+		<ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Life/">#Life</a>&nbsp;
+			</li>
+			
+			<li class="tag-item mx-0.5">
+				<a href="/tags/Travel/">#Travel</a>&nbsp;
+			</li>
+			
+		</ul>
+		
+
+		
+
+		
+		<div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+			
+			
+			<div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+				<a class="next" rel="next" href="/2025/12/03/115%E8%B3%87%E5%B7%A5%E6%89%80%E6%8E%A8%E7%94%84%E5%BF%83%E5%BE%97/">
+					<span class="title flex justify-center items-center">
+						<span class="post-nav-title-item truncate max-w-48">115資工所推甄 &amp; 五年雙學位申請心得</span>
+						<span class="post-nav-item">Next posts</span>
+					</span>
+					<span class="right arrow-icon flex justify-center items-center">
+						<i class="fa-solid fa-chevron-right"></i>
+					</span>
+				</a>
+			</div>
+			
+		</div>
+		
+
+
+		
+		<div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+			<div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+                    lang: 'zh-CN',
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+		</div>
+		
+	</div>
+
+	
+	<div class="toc-content-container">
+		<div class="post-toc-wrap">
+	<div class="post-toc">
+		<div class="toc-title">On this page</div>
+		<div class="page-title">2026 北海道</div>
+		<ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1-1-11"><span class="nav-text">Day1 (1&#x2F;11)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-1-12"><span class="nav-text">Day2 (1&#x2F;12)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day3-1-13"><span class="nav-text">Day3 (1&#x2F;13)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day4-1-14"><span class="nav-text">Day4 (1&#x2F;14)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day5-1-15"><span class="nav-text">Day5 (1&#x2F;15)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day6-1-16"><span class="nav-text">Day6 (1&#x2F;16)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bonus-Day-1-17"><span class="nav-text">Bonus Day (1&#x2F;17)</span></a></li></ol>
+
+	</div>
+</div>
+	</div>
+	
+</div>
+			</div>
+
+			
+		</div>
+
+		<div class="main-content-footer">
+			<footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2025</span>
+              -
+            
+            2026&nbsp;&nbsp;<i class="fa-light fa-code-compare"></i>&nbsp;&nbsp;<a href="/">Xavier</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        7 posts in total
+                    </span>
+                    
+                        <span>
+                            16.8k words in total
+                        </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.8.5</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+		</div>
+	</div>
+
+	
+	<div class="post-tools">
+		<div class="post-tools-container">
+	<ul class="article-tools-list">
+		<!-- TOC aside toggle -->
+		
+		<li class="right-bottom-tools page-aside-toggle">
+			<i class="fa-regular fa-outdent"></i>
+		</li>
+		
+
+		<!-- go comment -->
+		
+		<li class="go-comment">
+			<i class="fa-regular fa-comments"></i>
+		</li>
+		
+	</ul>
+</div>
+	</div>
+	
+
+	<div class="right-side-tools-container">
+		<div class="side-tools-container">
+	<ul class="hidden-tools-list">
+		<li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-plus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+			<i class="fa-regular fa-magnifying-glass-minus"></i>
+		</li>
+
+		<li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+			<i class="fa-regular fa-moon"></i>
+		</li>
+
+		<!-- rss -->
+		
+
+		
+
+		<li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+			<i class="fa-regular fa-arrow-down"></i>
+		</li>
+	</ul>
+
+	<ul class="visible-tools-list">
+		<li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+			<i class="fa-regular fa-cog fa-spin"></i>
+		</li>
+		
+		<li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+			<i class="arrow-up fas fa-arrow-up"></i>
+			<span class="percent"></span>
+		</li>
+		
+		
+	</ul>
+</div>
+	</div>
+
+	<div class="image-viewer-container">
+	<img src="">
+</div>
+
+	
+
+</main>
+
+
+
+<script src="/js/build/libs/Swup.min.js"></script>
+
+<script src="/js/build/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/build/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/build/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+	
+<script src="/js/build/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/build/utils.js" type="module"></script>
+
+<script src="/js/build/main.js" type="module"></script>
+
+<script src="/js/build/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/build/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/build/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/build/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/build/tools/runtime.js"></script>
+
+    
+<script src="/js/build/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/build/libs/Typed.min.js"></script>
+
+  
+<script src="/js/build/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/build/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/build/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/build/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/build/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/build/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+
+	
+</body>
+
+</html>
